@@ -49,7 +49,7 @@ export default function About() {
             <div className="relative pl-16">
               <dt className="text-base font-semibold leading-7 text-white">
                 <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-slate-800 border border-slate-700">
-                  <Icon name="confirm" size={20} className="text-amber-500" />
+                  <Icon name="confirm" size={20} className="text-amber-500" /> 
                 </div>
                 Conservation First
               </dt>
