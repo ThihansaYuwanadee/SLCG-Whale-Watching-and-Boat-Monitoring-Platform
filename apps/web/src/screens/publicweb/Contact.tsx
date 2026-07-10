@@ -1,58 +1,56 @@
-import { Clock3, Mail, MapPin, Phone } from 'lucide-react';
-
-const contactDetails = [
-  {
-    title: 'Call the office',
-    value: '+1 (555) 014-2288',
-    description: 'Open daily from 7:00 AM to 8:00 PM',
-    icon: Phone,
-  },
-  {
-    title: 'Email us',
-    value: 'hello@whalewatchdemo.com',
-    description: 'Replies within one business day',
-    icon: Mail,
-  },
-  {
-    title: 'Visit the dock',
-    value: 'Pier 12, Harbor Point',
-    description: 'Free parking available for all guests',
-    icon: MapPin,
-  },
-  {
-    title: 'Boarding window',
-    value: 'Check-in 30 minutes early',
-    description: 'Morning and sunset cruises available',
-    icon: Clock3,
-  },
-];
+import React from 'react';
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-slate-950 px-6 py-24 text-white sm:py-32 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">Contact</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Plan your next ocean escape</h2>
-          <p className="mt-6 text-lg leading-8 text-slate-400">
-            These sample details are ready for UI testing and can be swapped for real booking information later.
-          </p>
-        </div>
+    <section 
+      className="w-full min-h-screen py-20 px-4 flex items-center justify-center bg-cover bg-center"
+      style={{ 
+        backgroundImage: 'url("contact.png")', // Your main ocean image
+        fontFamily: "'Montserrat', sans-serif" 
+      }}
+    >
+      {/* Main Card */}
+      <div className="w-full max-w-5xl bg-white rounded-3xl p-8 md:p-16 shadow-2xl relative overflow-hidden">
+        
+        {/* Subtle Line Texture Layer */}
+        {/* Replace 'line-texture.png' with a transparent PNG of the wavy lines */}
+        <div 
+          className="absolute inset-0 opacity-[100] pointer-events-none" 
+          style={{ 
+            backgroundImage: 'url("/contacttexture.png")', 
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        ></div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {contactDetails.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div key={item.title} className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-lg shadow-slate-950/40">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-500">
-                  <Icon size={22} />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold text-white">{item.title}</h3>
-                <p className="mt-2 text-sm font-medium text-slate-100">{item.value}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-400">{item.description}</p>
-              </div>
-            );
-          })}
+        {/* Content */}
+        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20 relative z-10">
+          
+          {/* Logo */}
+          <div className="w-full md:w-1/3 flex justify-center">
+            <img 
+              src="/SLCGicon.png" 
+              alt="Sri Lanka Coast Guard" 
+              className="w-48 h-48 md:w-64 md:h-64 object-contain"
+            />
+          </div>
+
+          {/* Form */}
+          <div className="w-full md:w-2/3">
+            <h2 className="text-[#0B213E] text-3xl md:text-4xl font-bold mb-8">
+              Have questions?<br />
+              Let's connect.
+            </h2>
+            
+            <form className="space-y-4">
+              <input type="text" placeholder="Enter Your Name" className="w-full p-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#0B213E] outline-none transition-all" />
+              <input type="email" placeholder="Enter Your Email Address" className="w-full p-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#0B213E] outline-none transition-all" />
+              <textarea placeholder="Type Your Inquiry Or Feedback..." rows={4} className="w-full p-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#0B213E] outline-none transition-all"></textarea>
+              <button type="submit" className="bg-[#0B213E] text-white px-12 py-4 rounded-xl font-bold hover:bg-[#1a3a63] transition-colors">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>

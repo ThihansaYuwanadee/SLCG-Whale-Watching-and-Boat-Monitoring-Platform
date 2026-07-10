@@ -1,55 +1,58 @@
-const galleryItems = [
-  {
-    title: 'Sunrise Departure',
-    caption: 'Golden light over the open water and a calm morning breeze.',
-    accent: 'from-amber-400 via-orange-500 to-rose-500',
-    emoji: '🌅',
-  },
-  {
-    title: 'Humpback Family',
-    caption: 'A playful pod surfacing near the reef line.',
-    accent: 'from-sky-400 via-cyan-500 to-blue-600',
-    emoji: '🐋',
-  },
-  {
-    title: 'Evening Cruise',
-    caption: 'Warm sunset views and premium deck seating.',
-    accent: 'from-fuchsia-500 via-violet-500 to-indigo-600',
-    emoji: '🌇',
-  },
-  {
-    title: 'Blue Water Views',
-    caption: 'Wide-angle views from the upper observation deck.',
-    accent: 'from-emerald-400 via-teal-500 to-cyan-600',
-    emoji: '💧',
-  },
+import React from 'react';
+
+const galleryImages = [
+  { id: 1, src: '/gallery-1.jpg', alt: 'Whale breaching' },
+  { id: 2, src: '/gallery-2.jpg', alt: 'Whale tail diving' },
+  { id: 3, src: '/gallery-3.png', alt: 'Tour boat in ocean' },
+  { id: 4, src: '/gallery-4.jpg', alt: 'Whale jumping near sunset' },
+  { id: 5, src: '/gallery-5.jpg', alt: 'Whale underwater view' },
 ];
 
 export default function Gallery() {
   return (
-    <section id="gallery" className="bg-slate-900 px-6 py-24 text-white sm:py-32 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">Gallery</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">A glimpse of the experience</h2>
-          <p className="mt-6 text-lg leading-8 text-slate-400">
-            Sample gallery cards are in place for testing layouts, spacing, and image placeholders before real media is added.
+    <section 
+      className="w-full min-h-screen bg-white py-16 md:pt-28 md:pb-12 px-4 md:px-16 flex flex-col items-center justify-center"
+      style={{ fontFamily: "'Montserrat', sans-serif" }}
+    >
+      {/* Container Adjustment:
+        - gap-10 on mobile (slightly increased)
+        - md:gap-16 on desktop (provides comfortable room for expansion)
+      */}
+      <div className="w-full max-w-[1400px] flex flex-col items-center justify-center gap-10 md:gap-16">
+        
+        {/* MOBILE: Staggered Grid */}
+        <div className="md:hidden grid grid-cols-5 gap-2 w-full h-[220px]">
+          {galleryImages.map((img, index) => (
+            <div 
+              key={img.id}
+              className={`bg-cover bg-center rounded-sm ${index % 2 !== 0 ? 'mt-8' : 'mt-0'}`}
+              style={{ backgroundImage: `url(${img.src})`, aspectRatio: '70/200' }}
+            />
+          ))}
+        </div>
+
+        {/* DESKTOP: Accordion Gallery */}
+        <div className="hidden md:flex flex-row w-full h-[400px] gap-6">
+          {galleryImages.map((img) => (
+            <div 
+              key={img.id}
+              className="group relative bg-gray-200 cursor-pointer flex-1 md:hover:flex-[3] bg-cover bg-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+              style={{ backgroundImage: `url(${img.src})` }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-700"></div>
+            </div>
+          ))}
+        </div>
+
+        {/* Caption Text */}
+        <div className="max-w-2xl text-center">
+          <p className="text-[#0B213E] text-sm md:text-lg font-bold leading-relaxed">
+            A Glimpse Into The World Of Whale Watching, Where Technology Meets The Ocean. Browse
+            Through Moments That Celebrate Adventure, Connectivity, And The Natural Beauty That
+            Inspires Every Journey.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {galleryItems.map((item) => (
-            <article key={item.title} className="overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/70 shadow-xl shadow-slate-950/40">
-              <div className={`flex h-40 items-center justify-center bg-gradient-to-br ${item.accent}`}>
-                <span className="text-5xl">{item.emoji}</span>
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-400">{item.caption}</p>
-              </div>
-            </article>
-          ))}
-        </div>
       </div>
     </section>
   );
