@@ -12,6 +12,16 @@ import Gallery from './screens/publicweb/Gallery';
 import Hero from './screens/publicweb/Hero';
 import Login from './screens/publicweb/Login';
 import SignUp from './screens/publicweb/SignUp';
+import AdminDashboard from './screens/Admin/AdminDashboard';
+import ManageUsers from './screens/Admin/ManageUsers';
+import SelectUsers from './screens/Admin/selectusers';
+import ManageStaff from './screens/Admin/managestaff';
+import ManageBoatOwners from './screens/Admin/manageboatowners';
+import ManageBoatCrew from './screens/Admin/manageboatcrew';
+import ManageFleets from './screens/Admin/managefleets';
+import FleetInfo from './screens/Admin/fleetinfo';
+import Trips from './screens/Admin/Trips';
+import TripInfo from './screens/Admin/tripinfo';
 import OPSDashboard from './screens/OPS/OPSdashboard';
 import OPSMonitor from './screens/OPS/OPSmonitor';
 import OPSNotifications from './screens/OPS/OPSnotifications';
@@ -20,6 +30,7 @@ import OPSTrips from './screens/OPS/OPStrips';
 import OPSTripdetails from './screens/OPS/OPSTripdetails';
 
 const OPS_ROLES = ['OPS'] as const;
+const ADMIN_ROLES = ['Admin'] as const;
 
 function PublicLandingPage() {
   return (
@@ -44,6 +55,14 @@ function OpsRoute({ children }: { children: ReactElement }) {
   );
 }
 
+function AdminRoute({ children }: { children: ReactElement }) {
+  return (
+    <ProtectedRoute allowedRoles={[...ADMIN_ROLES]}>
+      {children}
+    </ProtectedRoute>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -54,6 +73,17 @@ export default function App() {
             <Route path="/auth" element={<AuthLanding />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+
+            <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+            <Route path="/admin/manage-users" element={<AdminRoute><ManageUsers /></AdminRoute>} />
+            <Route path="/admin/select-users" element={<AdminRoute><SelectUsers /></AdminRoute>} />
+            <Route path="/admin/manage-staff" element={<AdminRoute><ManageStaff /></AdminRoute>} />
+            <Route path="/admin/manage-boat-owners" element={<AdminRoute><ManageBoatOwners /></AdminRoute>} />
+            <Route path="/admin/manage-boat-crew" element={<AdminRoute><ManageBoatCrew /></AdminRoute>} />
+            <Route path="/admin/manage-fleets" element={<AdminRoute><ManageFleets /></AdminRoute>} />
+            <Route path="/admin/fleet-info/:fleetId" element={<AdminRoute><FleetInfo /></AdminRoute>} />
+            <Route path="/admin/trips" element={<AdminRoute><Trips /></AdminRoute>} />
+            <Route path="/admin/trip-info/:tripId" element={<AdminRoute><TripInfo /></AdminRoute>} />
 
             <Route path="/ops" element={<OpsRoute><OPSDashboard /></OpsRoute>} />
             <Route path="/ops/monitor" element={<OpsRoute><OPSMonitor /></OpsRoute>} />
